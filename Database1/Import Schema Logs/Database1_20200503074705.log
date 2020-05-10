@@ -1,0 +1,86 @@
+03/05/2020 21:47:05	This log contains information about the import schema operation into project 'Database1' on computer 'LAPTOP-LSJEJG4N' by user 'akias'.
+03/05/2020 21:47:05	Import of database schema has started.
+03/05/2020 21:47:13	Gathering database credentials
+03/05/2020 21:47:13	Gathering database options
+03/05/2020 21:47:13	Gathering generic database scoped configuration option
+03/05/2020 21:47:13	Gathering users
+03/05/2020 21:47:13	Gathering roles
+03/05/2020 21:47:13	Gathering application roles
+03/05/2020 21:47:13	Gathering role memberships
+03/05/2020 21:47:13	Gathering filegroups
+03/05/2020 21:47:13	Gathering full-text catalogs
+03/05/2020 21:47:13	Gathering assemblies
+03/05/2020 21:47:13	Gathering certificates
+03/05/2020 21:47:13	Gathering asymmetric keys
+03/05/2020 21:47:13	Gathering symmetric keys
+03/05/2020 21:47:13	Gathering encrypted symmetric keys
+03/05/2020 21:47:13	Gathering schemas
+03/05/2020 21:47:13	Gathering XML schema collections
+03/05/2020 21:47:13	Gathering user-defined data types
+03/05/2020 21:47:13	Gathering user-defined types
+03/05/2020 21:47:13	Gathering table types
+03/05/2020 21:47:13	Gathering unique keys for table types
+03/05/2020 21:47:13	Gathering primary keys for table types
+03/05/2020 21:47:13	Gathering indexes for table types
+03/05/2020 21:47:13	Gathering check constraints for table types
+03/05/2020 21:47:13	Gathering default constraints for table types
+03/05/2020 21:47:13	Gathering partition functions
+03/05/2020 21:47:13	Gathering partition schemes
+03/05/2020 21:47:13	Gathering functions
+03/05/2020 21:47:13	Gathering encrypted functions
+03/05/2020 21:47:13	Gathering aggregates
+03/05/2020 21:47:13	Gathering procedures
+03/05/2020 21:47:13	Gathering encrypted procedures
+03/05/2020 21:47:13	Gathering tables
+03/05/2020 21:47:13	Gathering primary keys
+03/05/2020 21:47:13	Gathering unique constraints
+03/05/2020 21:47:13	Gathering foreign keys
+03/05/2020 21:47:13	Gathering default constraints
+03/05/2020 21:47:13	Gathering check constraints
+03/05/2020 21:47:13	Gathering views
+03/05/2020 21:47:13	Gathering encrypted views
+03/05/2020 21:47:13	Gathering indexes
+03/05/2020 21:47:13	Gathering statistics
+03/05/2020 21:47:13	Gathering full-text index stoplists
+03/05/2020 21:47:13	Gathering search property lists
+03/05/2020 21:47:13	Gathering search properties
+03/05/2020 21:47:13	Gathering full-text indexes
+03/05/2020 21:47:13	Gathering column store indexes
+03/05/2020 21:47:13	Gathering spatial indexes
+03/05/2020 21:47:13	Gathering XML indexes
+03/05/2020 21:47:13	Gathering Selective XML indexes
+03/05/2020 21:47:13	Gathering encrypted triggers
+03/05/2020 21:47:13	Gathering triggers
+03/05/2020 21:47:13	Gathering encrypted and clr ddl triggers
+03/05/2020 21:47:13	Gathering ddl triggers
+03/05/2020 21:47:13	Creating edge constraints
+03/05/2020 21:47:13	Gathering synonyms
+03/05/2020 21:47:13	Gathering defaults
+03/05/2020 21:47:13	Gathering data constraint uddt bindings
+03/05/2020 21:47:13	Gathering rules
+03/05/2020 21:47:13	Gathering data constraint uddt bindings
+03/05/2020 21:47:13	Gathering message types
+03/05/2020 21:47:13	Gathering queues
+03/05/2020 21:47:13	Gathering contracts
+03/05/2020 21:47:13	Gathering services
+03/05/2020 21:47:13	Gathering event notifications
+03/05/2020 21:47:13	Gathering remote service bindings
+03/05/2020 21:47:13	Gathering broker priorities
+03/05/2020 21:47:13	Gathering signatures
+03/05/2020 21:47:13	Gathering data compression options
+03/05/2020 21:47:13	Gathering sequence types
+03/05/2020 21:47:13	Gathering security policies
+03/05/2020 21:47:13	Gather column encryption keys
+03/05/2020 21:47:13	Gathering column master keys
+03/05/2020 21:47:13	Gathering external data sources
+03/05/2020 21:47:13	Gathering external file formats
+03/05/2020 21:47:13	Gathering external tables
+03/05/2020 21:47:13	Gathering extended properties
+03/05/2020 21:47:14	Gathering credentials
+03/05/2020 21:47:14	Gathering logins
+03/05/2020 21:47:14	Gathering server audits
+03/05/2020 21:47:15	Scanning project for duplicate elements
+03/05/2020 21:47:15	Finished duplicate element processing
+03/05/2020 21:47:18	Finished importing database.
+03/05/2020 21:47:18	A summary of the import was saved to the following location: C:\Users\akias\source\repos\GTL_Project\Database1\Import Schema Logs\Database1_20200503074705.log
+03/05/2020 21:47:18	Click Finish to continue...

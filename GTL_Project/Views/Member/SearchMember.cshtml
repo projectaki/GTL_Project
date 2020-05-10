@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GTL_Project.Models.Member>
+
+@{
+    ViewBag.Title = "SearchMember";
+}
+
+<h2>Search Members</h2>
+
+<form method="get" action="@Url.Action("SearchMemberWhere", "Member")">
+    <label for="search">Search</label>
+    <input type="text" name="search" id="search" />
+    <button type="submit">Perform search</button>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ssn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ssn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            | @Html.ActionLink("Info", "MemberInfo", "Member") |
+            | @Html.ActionLink("Loans", "ShowPersonLoansWhere", "Loan", new { id = item.Ssn },null) |
+
+        </td>
+    </tr>
+}
+
+</table>

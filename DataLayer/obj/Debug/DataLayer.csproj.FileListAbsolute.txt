@@ -1,0 +1,9 @@
+C:\Users\akias\source\repos\GTL_Project\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\akias\source\repos\GTL_Project\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\akias\source\repos\GTL_Project\DataLayer\bin\Debug\Dapper.dll
+C:\Users\akias\source\repos\GTL_Project\DataLayer\bin\Debug\Dapper.xml
+C:\Users\akias\source\repos\GTL_Project\DataLayer\obj\Debug\DataLayer.csprojAssemblyReference.cache
+C:\Users\akias\source\repos\GTL_Project\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
+C:\Users\akias\source\repos\GTL_Project\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
+C:\Users\akias\source\repos\GTL_Project\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\akias\source\repos\GTL_Project\DataLayer\obj\Debug\DataLayer.pdb

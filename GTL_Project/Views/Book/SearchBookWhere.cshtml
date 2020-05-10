@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GTL_Project.Models.Book>
+
+@{
+    ViewBag.Title = "Search Book";
+}
+
+<h2>Search Book</h2>
+
+<form method="get" action="@Url.Action("SearchBookWhere", "Book")">
+    <label for="search">Search</label>
+    <input type="text" name="search" id="search" />
+    <button type="submit">Perform search</button>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Isbn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Isbn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Author)
+    </td>
+
+    <td>
+        |@Html.ActionLink("Info", "BookInfo", "Book", new { id = item.Isbn }, null) |
+
+    </td>
+</tr>
+    }
+
+</table>

@@ -44,7 +44,7 @@ namespace GTL_Project.Controllers
 
         public ActionResult MemberInfo(int id)
         {
-            var data = MemberControl.LoadMember(id);
+            var data = MemberControl.LoadMemberInfo(id);
 
             List<Member> members = new List<Member>();
 

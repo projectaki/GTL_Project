@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 namespace DataLayer.DataAccess
 {
-    public static class SQLDataAccess
+    public static class SqlDataAccess
     {
         public static string GetConnectionString(string connectionName ="GTL")
         {
@@ -26,6 +26,15 @@ namespace DataLayer.DataAccess
             }
         }
 
+        public static List<T> LoadData<T>(string sql,Dictionary<string, object> dict)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                var param = new DynamicParameters(dict);
+                return cnn.Query<T>(sql, param).ToList();
+            }
+        }
+
         public static int SaveData<T>(string sql, T data)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
@@ -33,5 +42,7 @@ namespace DataLayer.DataAccess
                 return cnn.Execute(sql, data);
             }
         }
+
+        
     }
 }

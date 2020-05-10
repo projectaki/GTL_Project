@@ -27,46 +27,63 @@ namespace DataLayer.ControlLayer
             string sql = @"insert into dbo.Book (isbn,author,title,description,in_stock,lendable,edition,cover_type) values (
                                @Isbn,@Author,@Title,@Description,@In_stock,@Lendable,@edition,@cover_type);";
 
-            return SQLDataAccess.SaveData(sql, data);
+            return SqlDataAccess.SaveData(sql, data);
         }
 
         public static List<Book> LoadBooks()
         {
             string sql = @"select *
                            from book;";
-            var data = SQLDataAccess.LoadData<Book>(sql);
+            var data = SqlDataAccess.LoadData<Book>(sql);
             return data;
         }
 
         public static List<Book> LoadBooksWhere(int isbn)
         {
+           
+            var dict = new Dictionary<string, object>
+            {
+                { "@isbn", isbn }
+            };
+            
             string sql = @"select *
                            from book
-                           where isbn =" + isbn + ";";
-            var data = SQLDataAccess.LoadData<Book>(sql);
+                           where isbn = @isbn;";
+            
+            var data = SqlDataAccess.LoadData<Book>(sql,dict);
             return data;
         }
 
-        public static List<Book> SearchBooks(string search)
+        public static List<Book> SearchBooks(string search = "")
         {
-            
-            string sql = "select * from book" + " where title like" + "'" + "%" + search + "%" + "'" + " order by title;";
+            var dict = new Dictionary<string, object>
+            {
+                { "@search", search }
+            };
 
-            var data = SQLDataAccess.LoadData<Book>(sql);
+            string sql = @"select * from book
+                           where title like CONCAT('%',@search,'%')
+                           order by title;";
+
+            var data = SqlDataAccess.LoadData<Book>(sql,dict);
             return data;
         }
 
         public static List<Copy> AvailableCopies(int isbn)
         {
+            var dict = new Dictionary<string, object>
+            {
+                { "@isbn", isbn }
+            };
 
-            string sql = "select Copy.isbn,Book.title,Copy.copyid,Active_Loans.ssn" +
-            " from Copy" +
-            " inner join Book on Book.isbn = Copy.isbn" +
-            " left join Active_Loans on Active_Loans.copyid = Copy.copyid" +
-            " where book.isbn =" + isbn + "and ssn is null" +
-            " order by copyid;";
+            string sql = @"select Copy.isbn,Book.title,Copy.copyid,Active_Loans.ssn
+                            from Copy
+                            inner join Book on Book.isbn = Copy.isbn
+                            left join Active_Loans on Active_Loans.copyid = Copy.copyid
+                            where book.isbn = @isbn and ssn is null
+                            order by copyid;";
 
-            var data = SQLDataAccess.LoadData<Copy>(sql);
+            var data = SqlDataAccess.LoadData<Copy>(sql,dict);
             return data;
         }
 

@@ -28,33 +28,41 @@ namespace DataLayer.ControlLayer
                                @Ssn,@fname,@lname,@mail_address,@phone_nr)
                                insert into dbo.Member (ssn,campus,sign_up_date,member_type) values (@Ssn,@Campus,CURRENT_TIMESTAMP,@Member_Type);";
 
-            return SQLDataAccess.SaveData(sql,data);
+            return SqlDataAccess.SaveData(sql,data);
         }
 
-        public static List<Member> LoadMember(int id)
+        public static List<Member> LoadMemberInfo(int id)
         {
+            var dict = new Dictionary<string, object>
+            {
+                { "@id", id }
+            };
             string sql = @"select person.ssn,fname,lname,mail_address,phone_nr,campus,sign_up_date,member_type
                            from person
                            inner join Member on person.ssn = member.ssn
-                           where person.ssn =" + id + 
-                           " order by fname;";
-            var data = SQLDataAccess.LoadData<Member>(sql);
+                           where person.ssn = @id
+                           order by fname;";
+            var data = SqlDataAccess.LoadData<Member>(sql,dict);
             return data;
         }
 
         public static List<Member> LoadMembersWhere(string search)
         {
+            var dict = new Dictionary<string, object>
+            {
+                { "@search", search }
+            };
 
-            string sql = "select person.ssn,fname,lname,mail_address,phone_nr,campus,sign_up_date,member_type"
-                           + " from person"
-                           + " inner join Member on person.ssn = member.ssn"
-                           + " where fname+" + "' " + "'" + " + lname like" + "'" + "%" + search + "%" + "'" 
-                           + " order by fname;";
+            string sql = @"select person.ssn,fname,lname,mail_address,phone_nr,campus,sign_up_date,member_type
+                           from person
+                           inner join Member on person.ssn = member.ssn
+                           where fname + ' ' +  lname like CONCAT('%',@search,'%')
+                           order by fname;";
 
 
 
                            
-            var data = SQLDataAccess.LoadData<Member>(sql);
+            var data = SqlDataAccess.LoadData<Member>(sql,dict);
             return data;
         }
 

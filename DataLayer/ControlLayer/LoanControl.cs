@@ -14,19 +14,23 @@ namespace DataLayer.ControlLayer
         {
             string sql = @"select *
                            from Active_Loans;";
-            var data = SQLDataAccess.LoadData<ActiveLoan>(sql);
+            var data = SqlDataAccess.LoadData<ActiveLoan>(sql);
             return data;
         }
 
         public static List<ActiveLoan> LoadLoansWhere(int ssn)
         {
-            string sql = "select Active_Loans.ssn,Active_Loans.copyid,Book.title,Active_Loans.loan_date from Active_Loans" 
-                          + " inner join Copy on copy.copyid = Active_Loans.copyid"
-                          + " inner join Book on book.isbn = copy.isbn"
-                          + " where ssn = 8582456"
-                          + "order by loan_date;";
+            var dict = new Dictionary<string, object>
+            {
+                { "@ssn", ssn }
+            };
+            string sql = @"select Active_Loans.ssn,Active_Loans.copyid,Book.title,Active_Loans.loan_date from Active_Loans
+                          inner join Copy on copy.copyid = Active_Loans.copyid
+                          inner join Book on book.isbn = copy.isbn
+                          where ssn = @ssn
+                          order by loan_date;";
 
-            var data = SQLDataAccess.LoadData<ActiveLoan>(sql);
+            var data = SqlDataAccess.LoadData<ActiveLoan>(sql,dict);
             return data;
         }
 
@@ -40,7 +44,7 @@ namespace DataLayer.ControlLayer
             };
             string sql = @"insert into Active_Loans (ssn,copyid,loan_date) values (@Ssn,@CopyId,CURRENT_TIMESTAMP);";
 
-            return SQLDataAccess.SaveData(sql, data);
+            return SqlDataAccess.SaveData(sql, data);
         }
 
 

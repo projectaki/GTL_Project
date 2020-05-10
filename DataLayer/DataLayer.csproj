@@ -48,7 +48,7 @@
     <Compile Include="ControlLayer\BookControl.cs" />
     <Compile Include="ControlLayer\LoanControl.cs" />
     <Compile Include="ControlLayer\MemberControl.cs" />
-    <Compile Include="DataAccess\SQLDataAccess.cs" />
+    <Compile Include="DataAccess\SqlDataAccess.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\ActiveLoan.cs" />
     <Compile Include="Models\Book.cs" />

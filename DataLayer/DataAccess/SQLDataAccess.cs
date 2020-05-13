@@ -35,6 +35,18 @@ namespace DataLayer.DataAccess
             }
         }
 
+        public static List<T> LoadDataSp<T>(string storedProcedure, T parameters)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                
+                List<T> rows = cnn.Query<T>(storedProcedure, parameters,
+                    commandType: CommandType.StoredProcedure).ToList();
+
+                return rows;
+            }
+        }
+
         public static int SaveData<T>(string sql, T data)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
@@ -43,6 +55,15 @@ namespace DataLayer.DataAccess
             }
         }
 
-        
+        public static int SaveDataSP<T>(string storedProcedure, T parameters)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Execute(storedProcedure, parameters,
+                    commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
     }
 }

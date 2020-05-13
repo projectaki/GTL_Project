@@ -22,13 +22,18 @@ namespace DataLayer.ControlLayer
                 mail_address = EmailAddress,
                 phone_nr = PhoneNumber,
                 campus = Campus,
-                member_type = MemberType
+                member_type = MemberType,
+                sign_up_date = DateTime.Now
             };
-                string sql = @"insert into dbo.Person (ssn,fname,lname,mail_address,phone_nr) values (
-                               @Ssn,@fname,@lname,@mail_address,@phone_nr)
-                               insert into dbo.Member (ssn,campus,sign_up_date,member_type) values (@Ssn,@Campus,CURRENT_TIMESTAMP,@Member_Type);";
 
-            return SqlDataAccess.SaveData(sql,data);
+            //string sql = @"insert into dbo.Person (ssn,fname,lname,mail_address,phone_nr) values (
+            //                @Ssn,@fname,@lname,@mail_address,@phone_nr)
+            //                insert into dbo.Member (ssn,campus,sign_up_date,member_type) values (@Ssn,@Campus,CURRENT_TIMESTAMP,@Member_Type);";
+
+            //return SqlDataAccess.SaveData(sql,data);
+
+            string sp = "spCreate_Member";
+            return SqlDataAccess.SaveDataSP(sp, data);
         }
 
         public static List<Member> LoadMemberInfo(int id)

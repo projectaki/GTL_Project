@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    public class Book
+    public class Book : IBook
     {
         public int Isbn { get; set; }
         public string Author { get; set; }

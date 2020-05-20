@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GTL_Project.Models
 {
-    public class Book
+    public class Book : IBook
     {
         [Display(Name = "ISBN")]
         [Required(ErrorMessage = "You must provide an ISBN!")]
-        [Range(1000000,9999999)]
+        [Range(1000000, 9999999)]
         public int Isbn { get; set; }
 
         [Display(Name = "Author")]

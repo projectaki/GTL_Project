@@ -45,22 +45,25 @@ namespace GTL_Project.Controllers
         {
             var data = BookControl.LoadBooks();
 
-            List<Book> books = new List<Book>();
+            List<IBook> books = new List<IBook>();
 
             foreach (var item in data)
             {
-                books.Add(new Book
-                {
-                    Isbn = item.Isbn,
-                    Author = item.Author,
-                    Title = item.Title,
-                    Description = item.Description,
-                    In_Stock = item.In_Stock,
-                    Lendable = item.Lendable,
-                    Edition = item.Edition,
-                    Cover_Type = item.Cover_Type
+                IBook tempBook = MVCFactory.newBook();
 
-                });
+                tempBook.Isbn = item.Isbn;
+                tempBook.Author = item.Author;
+                tempBook.Title = item.Title;
+                tempBook.Description = item.Description;
+                tempBook.In_Stock = item.In_Stock;
+                tempBook.Lendable = item.Lendable;
+                tempBook.Edition = item.Edition;
+                tempBook.Cover_Type = item.Cover_Type;
+
+                books.Add(tempBook);
+                
+                    
+
             }
             return View(books);
         }

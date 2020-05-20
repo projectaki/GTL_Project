@@ -13,28 +13,28 @@ namespace DataLayer.ControlLayer
         public static int CreateBook(int isbn, string author, string title, string description,
             bool in_stock, bool lendable, string edition, string covertype)
         {
-            Book data = new Book
-            {
-                Isbn = isbn,
-                Author = author,
-                Title = title,
-                Description = description,
-                In_Stock = in_stock,
-                Lendable = lendable,
-                Edition = edition,
-                Cover_Type = covertype
-            };
+            IBook data = Factory.newBook();
+
+            data.Isbn = isbn;
+            data.Author = author;
+            data.Title = title;
+            data.Description = description;
+            data.In_Stock = in_stock;
+            data.Lendable = lendable;
+            data.Edition = edition;
+            data.Cover_Type = covertype;
+
             string sql = @"insert into dbo.Book (isbn,author,title,description,in_stock,lendable,edition,cover_type) values (
                                @Isbn,@Author,@Title,@Description,@In_stock,@Lendable,@edition,@cover_type);";
 
             return SqlDataAccess.SaveData(sql, data);
         }
 
-        public static List<Book> LoadBooks()
+        public static List<IBook> LoadBooks()
         {
             string sql = @"select *
                            from book;";
-            var data = SqlDataAccess.LoadData<Book>(sql);
+            var data = SqlDataAccess.LoadData<IBook>(sql);
             return data;
         }
 

@@ -1,0 +1,6 @@
+C:\Users\akias\source\repos\GTL_Project\Database1\bin\Debug\Database1.dacpac
+C:\Users\akias\source\repos\GTL_Project\Database1\bin\Debug\Database1.dll
+C:\Users\akias\source\repos\GTL_Project\Database1\bin\Debug\Database1.pdb
+C:\Users\akias\source\repos\GTL_Project\Database1\obj\Debug\Database1.sqlprojAssemblyReference.cache
+C:\Users\akias\source\repos\GTL_Project\Database1\obj\Debug\Database1.dll
+C:\Users\akias\source\repos\GTL_Project\Database1\obj\Debug\Database1.pdb

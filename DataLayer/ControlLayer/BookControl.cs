@@ -8,9 +8,16 @@ using System.Threading.Tasks;
 
 namespace DataLayer.ControlLayer
 {
-    public static class BookControl
+    public class BookControl : IBookControl
     {
-        public static int CreateBook(int isbn, string author, string title, string description,
+        ISqlDataAccess _database;
+
+        public BookControl(ISqlDataAccess database)
+        {
+            _database = database;
+        }
+
+        public int CreateBook(int isbn, string author, string title, string description,
             bool in_stock, bool lendable, string edition, string covertype)
         {
             IBook data = Factory.newBook();
@@ -27,34 +34,33 @@ namespace DataLayer.ControlLayer
             string sql = @"insert into dbo.Book (isbn,author,title,description,in_stock,lendable,edition,cover_type) values (
                                @Isbn,@Author,@Title,@Description,@In_stock,@Lendable,@edition,@cover_type);";
 
-            return SqlDataAccess.SaveData(sql, data);
+            return _database.SaveData(sql, data);
         }
 
-        public static List<IBook> LoadBooks()
+        public List<Book> LoadBooks()
         {
-            string sql = @"select *
-                           from book;";
-            var data = SqlDataAccess.LoadData<IBook>(sql);
+            string sql = "select * from book";
+            var data = _database.LoadData<Book>(sql);
             return data;
         }
 
-        public static List<Book> LoadBooksWhere(int isbn)
+        public List<Book> LoadBooksWhere(int isbn)
         {
-           
+
             var dict = new Dictionary<string, object>
             {
                 { "@isbn", isbn }
             };
-            
+
             string sql = @"select *
                            from book
                            where isbn = @isbn;";
-            
-            var data = SqlDataAccess.LoadData<Book>(sql,dict);
+
+            var data = _database.LoadData<Book>(sql, dict);
             return data;
         }
 
-        public static List<Book> SearchBooks(string search = "")
+        public List<Book> SearchBooks(string search = "")
         {
             var dict = new Dictionary<string, object>
             {
@@ -65,11 +71,11 @@ namespace DataLayer.ControlLayer
                            where title like CONCAT('%',@search,'%')
                            order by title;";
 
-            var data = SqlDataAccess.LoadData<Book>(sql,dict);
+            var data = _database.LoadData<Book>(sql, dict);
             return data;
         }
 
-        public static List<Copy> AvailableCopies(int isbn)
+        public List<Copy> AvailableCopies(int isbn)
         {
             var dict = new Dictionary<string, object>
             {
@@ -83,7 +89,7 @@ namespace DataLayer.ControlLayer
                             where book.isbn = @isbn and ssn is null
                             order by copyid;";
 
-            var data = SqlDataAccess.LoadData<Copy>(sql,dict);
+            var data = _database.LoadData<Copy>(sql, dict);
             return data;
         }
 

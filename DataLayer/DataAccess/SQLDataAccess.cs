@@ -11,14 +11,14 @@ using System.Data.SqlClient;
 
 namespace DataLayer.DataAccess
 {
-    public static class SqlDataAccess
+    public class SqlDataAccess : ISqlDataAccess
     {
-        public static string GetConnectionString(string connectionName ="GTL")
+        public string GetConnectionString(string connectionName = "GTL")
         {
             return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
         }
 
-        public static List<T> LoadData<T>(string sql)
+        public List<T> LoadData<T>(string sql)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
@@ -26,7 +26,7 @@ namespace DataLayer.DataAccess
             }
         }
 
-        public static List<T> LoadData<T>(string sql,Dictionary<string, object> dict)
+        public List<T> LoadData<T>(string sql, Dictionary<string, object> dict)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
@@ -35,11 +35,11 @@ namespace DataLayer.DataAccess
             }
         }
 
-        public static List<T> LoadDataSp<T>(string storedProcedure, T parameters)
+        public List<T> LoadDataSp<T>(string storedProcedure, T parameters)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
-                
+
                 List<T> rows = cnn.Query<T>(storedProcedure, parameters,
                     commandType: CommandType.StoredProcedure).ToList();
 
@@ -47,7 +47,7 @@ namespace DataLayer.DataAccess
             }
         }
 
-        public static int SaveData<T>(string sql, T data)
+        public int SaveData<T>(string sql, T data)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
@@ -55,7 +55,7 @@ namespace DataLayer.DataAccess
             }
         }
 
-        public static int SaveDataSP<T>(string storedProcedure, T parameters)
+        public int SaveDataSP<T>(string storedProcedure, T parameters)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {

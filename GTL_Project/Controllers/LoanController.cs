@@ -1,4 +1,5 @@
-﻿using DataLayer.ControlLayer;
+﻿using DataLayer;
+using DataLayer.ControlLayer;
 using GTL_Project.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,8 @@ namespace GTL_Project.Controllers
 
         public ActionResult ShowPersonLoans()
         {
-            var data = LoanControl.LoadLoans();
+            ILoanControl lc = Factory.newLoanControl();
+            var data = lc.LoadLoans();
 
             List<ActiveLoan> loans = new List<ActiveLoan>();
 
@@ -39,8 +41,8 @@ namespace GTL_Project.Controllers
         [HttpGet]
         public ActionResult ShowPersonLoansWhere(int id)
         {
-            
-            var data = LoanControl.LoadLoansWhere(id);
+            ILoanControl lc = Factory.newLoanControl();
+            var data = lc.LoadLoansWhere(id);
 
             List<ActiveLoan> loans = new List<ActiveLoan>();
 
@@ -68,7 +70,8 @@ namespace GTL_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                LoanControl.AddBook(
+                ILoanControl lc = Factory.newLoanControl();
+                lc.AddBook(
 
                     id,
                     loan.CopyId);

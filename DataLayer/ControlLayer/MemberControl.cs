@@ -8,10 +8,15 @@ using System.Threading.Tasks;
 
 namespace DataLayer.ControlLayer
 {
-    public static class MemberControl
+    public class MemberControl : IMemberControl
     {
-       
-        public static int CreateMember(int Ssn, string FirstName, string LastName,
+        ISqlDataAccess _database;
+
+        public MemberControl(ISqlDataAccess database)
+        {
+            _database = database;
+        }
+        public int CreateMember(int Ssn, string FirstName, string LastName,
             string EmailAddress, string PhoneNumber, string Campus, string MemberType)
         {
             Member data = new Member
@@ -33,10 +38,10 @@ namespace DataLayer.ControlLayer
             //return SqlDataAccess.SaveData(sql,data);
 
             string sp = "spCreate_Member";
-            return SqlDataAccess.SaveDataSP(sp, data);
+            return _database.SaveDataSP(sp, data);
         }
 
-        public static List<Member> LoadMemberInfo(int id)
+        public List<Member> LoadMemberInfo(int id)
         {
             var dict = new Dictionary<string, object>
             {
@@ -47,11 +52,11 @@ namespace DataLayer.ControlLayer
                            inner join Member on person.ssn = member.ssn
                            where person.ssn = @id
                            order by fname;";
-            var data = SqlDataAccess.LoadData<Member>(sql,dict);
+            var data = _database.LoadData<Member>(sql, dict);
             return data;
         }
 
-        public static List<Member> LoadMembersWhere(string search)
+        public List<Member> LoadMembersWhere(string search)
         {
             var dict = new Dictionary<string, object>
             {
@@ -66,8 +71,8 @@ namespace DataLayer.ControlLayer
 
 
 
-                           
-            var data = SqlDataAccess.LoadData<Member>(sql,dict);
+
+            var data = _database.LoadData<Member>(sql, dict);
             return data;
         }
 

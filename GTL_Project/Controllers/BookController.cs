@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using DataLayer;
 using DataLayer.ControlLayer;
 using WebGrease;
+using DataLayer.DataAccess;
 
 namespace GTL_Project.Controllers
 {
@@ -27,7 +28,8 @@ namespace GTL_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                BookControl.CreateBook(
+                IBookControl bc = Factory.newBookControl();
+                bc.CreateBook(
                     book.Isbn,
                     book.Author,
                     book.Title,
@@ -43,7 +45,8 @@ namespace GTL_Project.Controllers
 
         public ActionResult SearchBook()
         {
-            var data = BookControl.LoadBooks();
+            IBookControl bc = Factory.newBookControl();
+            var data = bc.LoadBooks();
 
             List<IBook> books = new List<IBook>();
 
@@ -70,7 +73,8 @@ namespace GTL_Project.Controllers
 
         public ActionResult SearchBookWhere(string search)
         {
-            var data = BookControl.SearchBooks(search);
+            IBookControl bc = Factory.newBookControl();
+            var data = bc.SearchBooks(search);
 
             List<Book> books = new List<Book>();
 
@@ -94,7 +98,8 @@ namespace GTL_Project.Controllers
         [HttpGet]
         public ActionResult BookInfo(int id)
         {
-            var data = BookControl.LoadBooksWhere(id);
+            IBookControl bc = Factory.newBookControl();
+            var data = bc.LoadBooksWhere(id);
 
             List<Book> books = new List<Book>();
 
@@ -119,7 +124,8 @@ namespace GTL_Project.Controllers
         [HttpGet]
         public ActionResult BookCopies(int id)
         {
-            var data = BookControl.AvailableCopies(id);
+            IBookControl bc = Factory.newBookControl();
+            var data = bc.AvailableCopies(id);
 
             List<Copy> copies = new List<Copy>();
 

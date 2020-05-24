@@ -8,17 +8,25 @@ using System.Threading.Tasks;
 
 namespace DataLayer.ControlLayer
 {
-    public static class LoanControl
+    public class LoanControl : ILoanControl
     {
-        public static List<ActiveLoan> LoadLoans()
+
+        ISqlDataAccess _database;
+
+        public LoanControl(ISqlDataAccess database)
+        {
+            _database = database;
+        }
+
+        public List<ActiveLoan> LoadLoans()
         {
             string sql = @"select *
                            from Active_Loans;";
-            var data = SqlDataAccess.LoadData<ActiveLoan>(sql);
+            var data = _database.LoadData<ActiveLoan>(sql);
             return data;
         }
 
-        public static List<ActiveLoan> LoadLoansWhere(int ssn)
+        public List<ActiveLoan> LoadLoansWhere(int ssn)
         {
             var dict = new Dictionary<string, object>
             {
@@ -30,21 +38,21 @@ namespace DataLayer.ControlLayer
                           where ssn = @ssn
                           order by loan_date;";
 
-            var data = SqlDataAccess.LoadData<ActiveLoan>(sql,dict);
+            var data = _database.LoadData<ActiveLoan>(sql, dict);
             return data;
         }
 
-        public static int AddBook(int ssn, int copyid)
+        public int AddBook(int ssn, int copyid)
         {
             ActiveLoan data = new ActiveLoan
             {
                 Ssn = ssn,
                 CopyId = copyid
-                
+
             };
             string sql = @"insert into Active_Loans (ssn,copyid,loan_date) values (@Ssn,@CopyId,CURRENT_TIMESTAMP);";
 
-            return SqlDataAccess.SaveData(sql, data);
+            return _database.SaveData(sql, data);
         }
 
 

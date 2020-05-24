@@ -81,3 +81,4 @@ C:\Users\akias\source\repos\GTL_Project\GTL_Project\bin\DataLayer.dll
 C:\Users\akias\source\repos\GTL_Project\GTL_Project\bin\Dapper.dll
 C:\Users\akias\source\repos\GTL_Project\GTL_Project\bin\DataLayer.pdb
 C:\Users\akias\source\repos\GTL_Project\GTL_Project\bin\Dapper.xml
+C:\Users\akias\source\repos\GTL_Project\GTL_Project\bin\DataLayer.dll.config

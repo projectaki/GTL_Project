@@ -29,7 +29,8 @@ namespace GTL_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                MemberControl.CreateMember(
+                IMemberControl mc = Factory.newMemberControl();
+                mc.CreateMember(
                     member.Ssn,
                     member.FirstName,
                     member.LastName,
@@ -44,7 +45,8 @@ namespace GTL_Project.Controllers
 
         public ActionResult MemberInfo(int id)
         {
-            var data = MemberControl.LoadMemberInfo(id);
+            IMemberControl mc = Factory.newMemberControl();
+            var data = mc.LoadMemberInfo(id);
 
             List<Member> members = new List<Member>();
 
@@ -67,7 +69,8 @@ namespace GTL_Project.Controllers
 
         public ActionResult SearchMemberWhere(string search)
         {
-            var data = MemberControl.LoadMembersWhere(search);
+            IMemberControl mc = Factory.newMemberControl();
+            var data = mc.LoadMembersWhere(search);
 
             List<Member> members = new List<Member>();
 

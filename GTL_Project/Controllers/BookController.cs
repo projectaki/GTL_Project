@@ -29,15 +29,18 @@ namespace GTL_Project.Controllers
             if (ModelState.IsValid)
             {
                 IBookControl bc = Factory.newBookControl();
-                bc.CreateBook(
-                    book.Isbn,
-                    book.Author,
-                    book.Title,
-                    book.Description,
-                    book.In_Stock,
-                    book.Lendable,
-                    book.Edition,
-                    book.Cover_Type);
+                DataLayer.Models.IBook tempbook = Factory.newBook();
+
+                tempbook.Isbn = book.Isbn;
+                tempbook.Author = book.Author;
+                tempbook.Title = book.Title;
+                tempbook.Description = book.Description;
+                tempbook.In_Stock = book.In_Stock;
+                tempbook.Lendable = book.Lendable;
+                tempbook.Edition = book.Edition;
+                tempbook.Cover_Type = book.Cover_Type;
+
+                bc.CreateBook(tempbook);
                 return RedirectToAction("Index","Home");
             }
             return View();

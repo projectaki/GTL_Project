@@ -17,24 +17,22 @@ namespace DataLayer.ControlLayer
             _database = database;
         }
 
-        public int CreateBook(int isbn, string author, string title, string description,
-            bool in_stock, bool lendable, string edition, string covertype)
+        public int CreateBook(IBook book)
         {
-            IBook data = Factory.newBook();
+            
 
-            data.Isbn = isbn;
-            data.Author = author;
-            data.Title = title;
-            data.Description = description;
-            data.In_Stock = in_stock;
-            data.Lendable = lendable;
-            data.Edition = edition;
-            data.Cover_Type = covertype;
+            
 
             string sql = @"insert into dbo.Book (isbn,author,title,description,in_stock,lendable,edition,cover_type) values (
                                @Isbn,@Author,@Title,@Description,@In_stock,@Lendable,@edition,@cover_type);";
+            
+            return _database.SaveData(sql, book);
+        }
 
-            return _database.SaveData(sql, data);
+        public int testCB(IBook book)
+        {
+            string sql = "a";
+            return _database.SaveData(sql, book);
         }
 
         public List<Book> LoadBooks()

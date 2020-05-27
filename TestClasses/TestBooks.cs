@@ -22,10 +22,10 @@ namespace TestClasses
         {
 
             var mock = new Mock<ISqlDataAccess>();
-            
+            var books = GetBooks();
 
             mock.Setup(x => x.LoadData<Book>("select * from book"))
-            .Returns(GetBooks());
+            .Returns(books);
 
             var expected = GetBooks();
 
@@ -42,17 +42,54 @@ namespace TestClasses
 
         }
 
+        [Fact]
+        public void saveBooks()
+        {
+
+            var mock = new Mock<ISqlDataAccess>();
+            IBook book = GetBooks()[0];
+
+            string sql = @"insert into dbo.Book (isbn,author,title,description,in_stock,lendable,edition,cover_type) values (
+                               @Isbn,@Author,@Title,@Description,@In_stock,@Lendable,@edition,@cover_type);";
+
+            mock.Setup(x => x.SaveData(sql, book));
+  
+            var bc = new BookControl(mock.Object);
+
+            bc.CreateBook(book);
+            
+
+            mock.Verify(x => x.SaveData(sql, book), Times.Once);
+
+
+
+        }
+
         private List<Book> GetBooks()
         {
             List<Book> booklist = new List<Book>
             {
                 new Book
                 {
-                    Isbn = 1
+                    Isbn = 1,
+                    Author = "test",
+                    Title = "test",
+                    Description = "test",
+                    In_Stock = true,
+                    Lendable = true,
+                    Edition = "test",
+                    Cover_Type = "test"
                 },
                 new Book
                 {
-                    Isbn = 2
+                    Isbn = 2,
+                    Author = "test",
+                    Title = "test",
+                    Description = "test",
+                    In_Stock = true,
+                    Lendable = true,
+                    Edition = "test",
+                    Cover_Type = "test"
                 }
 
              };

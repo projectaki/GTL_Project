@@ -1,2 +1,2 @@
 # GTL_Project
- GTL Library Project
+ Library managment system prototype using MVC

@@ -1,12 +1,14 @@
 # GTL_Project (Solo school project)
 Library management system prototype using MVC in .NET Framework
  
-## Three Layered Architecture
+## Architecture
 Database Handling Layer,
 Control Layer,
-Top Layer/WebPage
+Top Layer/WebPage,
+SOLID Principles,
+Database security,
+DB Normalization
 
-## Technologies
-Prepared statements,
-Stored procedures,
-Authentication
+
+
+

@@ -1,2 +1,7 @@
 # GTL_Project
- Library managment system prototype using MVC
+ Library management system prototype using MVC in .NET Framework
+ 
+ ## Three Layered Architecture
+ Database Handling Layer
+ Control Layer
+ Top Layer/WebPage

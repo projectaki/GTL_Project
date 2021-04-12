@@ -47,6 +47,7 @@ namespace DataLayer.DataAccess
             }
         }
 
+
         public int SaveData<T>(string sql, T data)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))

@@ -95,6 +95,7 @@
     <Compile Include="Models\ActiveLoan.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Copy.cs" />
+    <Compile Include="Models\FinishedLoans.cs" />
     <Compile Include="Models\IBook.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<GTL_Project.Models.FinishedLoans>
+
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2>Most rented books</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Ranking
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            Hours Rented
+        </th>
+
+        <th></th>
+    </tr>
+    @{ 
+        int counter = 1;
+    }
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.Raw(counter++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Average_Hours)
+            </td>
+
+        </tr>
+        
+    }
+
+</table>

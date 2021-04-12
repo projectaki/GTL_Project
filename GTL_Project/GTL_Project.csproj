@@ -188,6 +188,8 @@
     <Content Include="Views\Book\SearchBookWhere.cshtml" />
     <Content Include="Views\Book\BookCopies.cshtml" />
     <Content Include="Views\Member\MemberInfo.cshtml" />
+    <Content Include="Views\Loan\Statistics.cshtml" />
+    <Content Include="Views\Loan\ReturnBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

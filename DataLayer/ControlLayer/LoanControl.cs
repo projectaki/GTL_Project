@@ -51,8 +51,39 @@ namespace DataLayer.ControlLayer
 
             };
             string sql = @"insert into Active_Loans (ssn,copyid,loan_date) values (@Ssn,@CopyId,CURRENT_TIMESTAMP);";
+            try
+            {
+                return _database.SaveData(sql, data);
+            }
+            catch (Exception ex)
+            {
 
-            return _database.SaveData(sql, data);
+                throw ex;
+            }
+            
+        }
+
+        public int ReturnBook(int copyid)
+        {
+            var data = new 
+            {
+                copy = copyid
+
+            };
+
+            string sp = "spReturn_Book";
+            return _database.SaveDataSP(sp, data);
+
+        }
+
+        public List<FinishedLoans> LoadStatistics()
+        {
+            string sql = @"select top 10 title,loan_time_days from Finished_Loans
+                           inner join Book on book.isbn = Finished_Loans.isbn
+                           order by loan_time_days desc;";
+
+            var data = _database.LoadData<FinishedLoans>(sql);
+            return data;
         }
 
 

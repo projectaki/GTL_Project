@@ -29,11 +29,7 @@ namespace DataLayer.ControlLayer
             return _database.SaveData(sql, book);
         }
 
-        public int testCB(IBook book)
-        {
-            string sql = "a";
-            return _database.SaveData(sql, book);
-        }
+        
 
         public List<Book> LoadBooks()
         {

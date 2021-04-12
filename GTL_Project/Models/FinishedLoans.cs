@@ -2,7 +2,7 @@
 {
     public class FinishedLoans
     {
-        public int Isbn { get; set; }
-        public int LoanTimeDays { get; set; }
+        public string title { get; set; }
+        public int Average_Hours { get; set; }
     }
 }
